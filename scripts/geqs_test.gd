@@ -1,6 +1,6 @@
 @abstract
 class_name GEQSTest
-extends Node
+extends Node3D
 
 enum TestPurpose {FILTER_SCORE, FILTER_ONLY, SCORE_ONLY}
 enum ScoreOperator {AVERAGE_SCORE, MAX_SCORE, MIN_SCORE}

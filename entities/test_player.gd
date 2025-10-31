@@ -26,7 +26,3 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("request_query"):
-		$GEQSQuery.request_query()

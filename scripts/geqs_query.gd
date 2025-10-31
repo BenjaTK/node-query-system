@@ -3,6 +3,7 @@ class_name GEQSQuery
 extends Node
 
 @export var use_debug_shapes: bool = false
+@export var debug_color: Gradient
 
 var generator: Generator
 
@@ -19,12 +20,14 @@ func init_generator():
 
 func request_query():
 	var gen_result: Array[GEQSProjection] = generator.get_generation()
-	for result in gen_result:
+	for projection in gen_result:
 		for test in generator.get_children():
-			test.perform_test(result)
+			if projection.is_filtered:
+				continue
+			test.perform_test(projection)
 		
 		if use_debug_shapes:
-			draw_debug(result)
+			draw_debug(projection)
 
 
 # DEBUG PURPOSE
@@ -46,8 +49,10 @@ func draw_debug(projection: GEQSProjection):
 
 	if projection.is_filtered:
 		text_label.set_deferred("text", "Filtered (0)")
+		text_label.set_deferred("modulate", Color.BLUE)
 	else:
 		text_label.set_deferred("text", "%0.2f" % projection.score)
+		text_label.set_deferred("modulate", debug_color.sample(projection.score))
 
 
 	# Remove ball after a bit

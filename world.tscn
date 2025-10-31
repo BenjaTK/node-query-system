@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bep8vp2474roh"]
+[gd_scene load_steps=11 format=3 uid="uid://bep8vp2474roh"]
 
 [ext_resource type="PackedScene" uid="uid://c2ih13se78qrg" path="res://entities/test_player.tscn" id="1_f3sb7"]
 [ext_resource type="Material" uid="uid://dvpbk4gvh28og" path="res://world/materials/placeholder_texture.material" id="1_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://nvso64245ltb" path="res://entities/enemy/enemy.tscn" id="3_tlwt5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -19,8 +20,8 @@ glow_enabled = true
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fj7yv"]
 data = PackedVector3Array(-20, -0.5, 20, -20, -0.5, -20, -20, 0.5, -20, 20, -0.5, -20, -20, -0.5, -20, -20, -0.5, 20, -20, 0.5, -20, -20, -0.5, -20, 20, -0.5, -20, -20, 0.5, -20, -20, 0.5, 20, -20, -0.5, 20, -20, -0.5, 20, -20, 0.5, 20, 20, 0.5, 20, 20, 0.5, 20, -20, 0.5, 20, -20, 0.5, -20, -20, -0.5, 20, 20, -0.5, 20, 20, -0.5, -20, 20, 0.5, 20, 20, -0.5, 20, -20, -0.5, 20, 20, -0.5, -20, 20, -0.5, 20, 20, 0.5, 20, 20, -0.5, -20, 20, 0.5, -20, -20, 0.5, -20, -20, 0.5, -20, 20, 0.5, -20, 20, 0.5, 20, 20, 0.5, 20, 20, 0.5, -20, 20, -0.5, -20)
 
-[sub_resource type="Animation" id="Animation_fj7yv"]
-resource_name = "f"
+[sub_resource type="Animation" id="Animation_tlwt5"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -34,8 +35,8 @@ tracks/0/keys = {
 "values": [Vector3(1, 8, 12)]
 }
 
-[sub_resource type="Animation" id="Animation_tlwt5"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_fj7yv"]
+resource_name = "f"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -54,10 +55,6 @@ _data = {
 &"RESET": SubResource("Animation_tlwt5"),
 &"f": SubResource("Animation_fj7yv")
 }
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_036b0"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fj7yv"]
 
 [node name="World" type="Node3D"]
 
@@ -98,7 +95,7 @@ size = Vector3(18.979492, 3.76062, 2.0493774)
 material = ExtResource("1_fj7yv")
 
 [node name="TestPlayer" parent="." instance=ExtResource("1_f3sb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.001846)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.609722, 0, 17.001846)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -111,29 +108,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_aqk2v")
 }
 
-[node name="CharacterBody3D4" type="CharacterBody3D" parent="." groups=["enemies"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.408599, 1.0110316, 15.299479)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D4"]
-mesh = SubResource("CapsuleMesh_036b0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D4"]
-shape = SubResource("CapsuleShape3D_fj7yv")
-
-[node name="CharacterBody3D6" type="CharacterBody3D" parent="." groups=["enemies"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4113379, 1.0110316, 0.93478584)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D6"]
-mesh = SubResource("CapsuleMesh_036b0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D6"]
-shape = SubResource("CapsuleShape3D_fj7yv")
-
-[node name="CharacterBody3D5" type="CharacterBody3D" parent="." groups=["enemies"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2841568, 1.0110316, 8.560383)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D5"]
-mesh = SubResource("CapsuleMesh_036b0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D5"]
-shape = SubResource("CapsuleShape3D_fj7yv")
+[node name="Enemy" parent="." instance=ExtResource("3_tlwt5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.240701, 1.0110316, 8.560383)
