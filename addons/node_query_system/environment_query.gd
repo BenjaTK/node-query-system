@@ -36,37 +36,7 @@ func request_query() -> QueryResult:
 
 # DEBUG PURPOSE
 func draw_debug(query_items_list: Array[QueryItem]):
-	var shape: CSGPrimitive3D
-	var balls: Array
-
-	for item: QueryItem in query_items_list:
-		if item.is_filtered:
-			shape = CSGBox3D.new()
-		else:
-			shape = CSGSphere3D.new()
-
-		shape.position = item.projection_position
-		get_tree().root.add_child(shape)
-
-		var text_label: Label3D = Label3D.new()
-		shape.add_child(text_label)
-		text_label.set_deferred("billboard", BaseMaterial3D.BILLBOARD_ENABLED)
-		text_label.set_deferred("position", Vector3.UP * 0.75)
-
-		if item.is_filtered:
-			text_label.set_deferred("text", "Filtered (0)")
-			text_label.set_deferred("modulate", Color.BLUE)
-		else:
-			if item.score:
-				text_label.set_deferred("text", "%0.2f" % item.score)
-				text_label.set_deferred("modulate", debug_color.sample(item.score))
-		balls.append(shape)
-
-
-	# Remove balls after a bit
-	await get_tree().create_timer(2).timeout
-	for ball in balls:
-		ball.queue_free()
+	DebugSphere.draw_items(query_items_list)
 	
 
 func _notification(what: int) -> void:

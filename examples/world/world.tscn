@@ -95,7 +95,7 @@ size = Vector3(18.979492, 3.76062, 2.0493774)
 material = ExtResource("1_dgp1c")
 
 [node name="TestPlayer" parent="." instance=ExtResource("2_loppk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.609722, 0, 17.001846)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.609722, 0, 18.086906)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
