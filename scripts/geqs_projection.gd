@@ -6,8 +6,9 @@ var score = null
 var collided_with: Node3D
 var is_filtered = false
 
-func _init(pos: Vector3, collided_with: Node3D, new_score = null) -> void:
+func _init(pos: Vector3, collider: Node3D = null, new_score = null) -> void:
     projection_position = pos
+    collided_with = collider
     score = new_score
     
 func add_score(incoming_score: float):
