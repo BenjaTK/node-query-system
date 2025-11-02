@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DebugSphere="*res://addons/debug/debug_sphere.gd"
+DebugSphere="*res://addons/node_query_system/debug/debug_sphere.gd"
 
 [editor_plugins]
 
