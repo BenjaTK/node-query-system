@@ -103,12 +103,17 @@ class QueryResult extends RefCounted:
 	func _init(val: Array[QueryItem]):
 		query_items = val
 		
-	func get_highest_score():
+	func get_highest_score_position() -> Vector3:
 		var highest: float
+		var highest_position: Vector3
 		for item: QueryItem in query_items:
+			if item.is_filtered:
+				continue
 			if highest == null:
 				highest = item.score
+				highest_position = item.projection_position
 			else:
 				if item.score > highest:
 					highest = item.score
-		return highest
+					highest_position = item.projection_position
+		return highest_position
