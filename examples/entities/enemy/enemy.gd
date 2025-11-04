@@ -16,6 +16,8 @@ func _input(event: InputEvent) -> void:
 		$EnvironmentQuery.request_query()
 		var query_result: EnvironmentQuery.QueryResult = await $EnvironmentQuery.query_finished
 		final_target = query_result.get_highest_score_position()
+		if !final_target:
+			return
 		nav_agent.target_position = final_target
 		current_target = nav_agent.get_next_path_position()
 		
